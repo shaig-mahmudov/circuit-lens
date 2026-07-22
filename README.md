@@ -8,6 +8,47 @@ Instead of treating a language model as a black box, CircuitLens extracts intern
 
 > Prompt → Tokens → Attention Heads → MLP Activations → Residual Stream → Output Logits
 
+## Current Status — v0.1 MVP
+
+The repository now contains the first executable vertical slice:
+
+- a reusable Python analysis engine for GPT-2-style Hugging Face models;
+- attention and MLP activation capture with top-k reduction;
+- a naive layer-by-layer logit lens;
+- a versioned `.llmgraph.zip` exporter and validator;
+- a Kaggle quickstart notebook;
+- a static Next.js viewer with architecture, attention, neuron, and logits views;
+- a deterministic demo bundle that works without downloading model weights.
+
+Ablation, activation patching, direct logit attribution, SmolLM2 support, and SAE features remain roadmap items. Attention and activation graphs in this version are descriptive and must not be interpreted as causal explanations.
+
+### Try the deterministic demo
+
+```bash
+PYTHONPATH=packages/engine/src python scripts/create_demo_bundle.py
+PYTHONPATH=packages/engine/src python scripts/validate_bundle.py \
+  apps/web/public/examples/gpt2-demo.llmgraph.zip
+```
+
+### Run the engine tests
+
+```bash
+PYTHONPATH=packages/engine/src python -m pytest packages/engine/tests -q
+```
+
+### Run the web viewer
+
+```bash
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000` and select **Load demo**.
+
+### Generate a real bundle on Kaggle
+
+Open [`notebooks/00_kaggle_quickstart.ipynb`](notebooks/00_kaggle_quickstart.ipynb), run all cells, and download the generated file from `/kaggle/working`.
+
 ---
 
 ## Overview
@@ -373,7 +414,9 @@ The web application validates every uploaded bundle before displaying it.
 
 ---
 
-## Repository Structure
+## Target Repository Structure
+
+The following tree describes the intended mature repository. The current executable MVP is summarized near the top of this README and tracked in [`ROADMAP.md`](ROADMAP.md).
 
 ```text
 circuit-lens/
@@ -451,27 +494,33 @@ circuit-lens/
 
 ## Technology Stack
 
-### Analysis Engine
+### Current MVP
+
+**Analysis engine**
 
 * Python
 * PyTorch
 * Hugging Face Transformers
-* TransformerLens
 * NumPy
-* Safetensors
 * Pydantic
 * JSON Schema
 
-### Web Application
+**Web application**
 
 * Next.js
 * React
 * TypeScript
 * React Flow
-* Sigma.js
-* Canvas or D3.js
-* Zustand
 * JSZip
+* Zod
+
+### Planned Extensions
+
+* TransformerLens for additional interpretability workflows
+* Sigma.js for larger circuit graphs
+* Canvas or D3.js for specialized attention views
+* Zustand for more complex explorer state
+* Safetensors and sparse autoencoder integrations
 
 ### Infrastructure
 
