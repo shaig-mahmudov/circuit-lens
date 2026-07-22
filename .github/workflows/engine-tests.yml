@@ -1,0 +1,24 @@
+name: Engine tests
+
+on:
+  push:
+    paths:
+      - "packages/engine/**"
+      - "scripts/**"
+      - ".github/workflows/engine-tests.yml"
+  pull_request:
+    paths:
+      - "packages/engine/**"
+      - "scripts/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e "./packages/engine[dev]"
+      - run: pytest packages/engine/tests -q
