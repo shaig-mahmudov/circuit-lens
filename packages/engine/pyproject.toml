@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "circuit-lens-engine"
+version = "0.1.0"
+description = "Model analysis and .llmgraph export engine for CircuitLens"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CircuitLens contributors" }]
+dependencies = [
+  "numpy>=2.0,<3",
+  "pydantic>=2.10,<3",
+  "torch>=2.4",
+  "transformers>=4.48,<6"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.9"
+]
+notebook = [
+  "jupyter>=1.1",
+  "ipywidgets>=8.1"
+]
+
+[project.scripts]
+circuit-lens = "circuit_lens.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
