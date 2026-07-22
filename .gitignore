@@ -22,6 +22,7 @@ runs/
 artifacts/
 *.llmgraph
 *.llmgraph.zip
+!apps/web/public/examples/*.llmgraph.zip
 *.npz
 *.npy
 *.parquet
@@ -43,3 +44,12 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Tooling
+.ruff_cache/
+.coverage
+coverage.xml
+*.egg-info/
+
+# TypeScript
+*.tsbuildinfo
