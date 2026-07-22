@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://circuitlens.dev/schema/manifest-0.1.0.json",
+  "title": "CircuitLens manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "format_version", "engine_version", "run_id", "created_at", "model_id", "capabilities", "files"],
+  "properties": {
+    "format": { "const": "llmgraph" },
+    "format_version": { "const": "0.1.0" },
+    "engine_version": { "type": "string" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "model_id": { "type": "string", "minLength": 1 },
+    "capabilities": { "type": "object" },
+    "files": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  }
+}

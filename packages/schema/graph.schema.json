@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://circuitlens.dev/schema/graph-0.1.0.json",
+  "title": "CircuitLens reduced graph",
+  "type": "object",
+  "required": ["metric", "nodes", "edges"],
+  "properties": {
+    "metric": { "type": "string" },
+    "nodes": { "type": "array" },
+    "edges": { "type": "array" }
+  }
+}
