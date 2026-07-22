@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model files
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+models/
+checkpoints/
+
+# Experiment outputs
+outputs/
+runs/
+artifacts/
+*.llmgraph
+*.llmgraph.zip
+*.npz
+*.npy
+*.parquet
+
+# Hugging Face
+.cache/
+huggingface/
+
+# Kaggle
+kaggle.json
+
+# Frontend
+node_modules/
+.next/
+out/
+dist/
+
+# Environment
+.env
+.env.*
+!.env.example
